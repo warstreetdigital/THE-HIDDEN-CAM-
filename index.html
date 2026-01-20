@@ -1,148 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>The Hidden Cam — Visual Storytelling</title>
+<title>The Hidden Cam</title>
 
 <style>
 :root{
-  --white:#f6f6f4;
-  --green:#0f6f4a;
+  --white:#f5f6f4;
   --ink:#0b0b0b;
-  --glass:rgba(15,111,74,0.08);
-  --muted:rgba(0,0,0,0.45);
+  --green:#0f6f4a;
+  --ambient:rgba(15,111,74,.08);
+  --muted:rgba(0,0,0,.45);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family: Inter, system-ui, sans-serif;
-  background:linear-gradient(180deg,var(--white),#ffffff);
+  font-family:Inter,system-ui,sans-serif;
+  background:linear-gradient(180deg,var(--white),#fff);
   color:var(--ink);
 }
 
 /* HERO */
 .hero{
-  height:85vh;
+  height:88vh;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.2),rgba(15,111,74,.06)),
+    linear-gradient(180deg,rgba(255,255,255,.15),rgba(15,111,74,.06)),
     url("cover-placeholder.jpg") center/cover no-repeat;
   display:flex;
   align-items:flex-end;
-  padding:40px;
+  padding:48px;
 }
 .hero h1{
-  font-size:clamp(2.2rem,5vw,4rem);
-  font-weight:700;
-  letter-spacing:-0.02em;
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  letter-spacing:-.02em;
 }
 
 /* SECTION */
 .section{
-  padding:70px 40px;
+  padding:80px 48px;
 }
 .section h2{
-  font-size:1.6rem;
-  margin-bottom:14px;
+  font-size:1.8rem;
+  margin-bottom:12px;
 }
 .section p{
-  max-width:720px;
+  max-width:760px;
   color:var(--muted);
 }
 
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-  margin-top:40px;
+/* EDITORIAL RAIL */
+.rail{
+  margin-top:34px;
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  padding-bottom:10px;
 }
+.rail::-webkit-scrollbar{display:none}
+
+/* CARD */
 .card{
+  min-width:300px;
   background:#fff;
-  border-radius:18px;
+  border-radius:22px;
   padding:26px;
-  box-shadow:0 10px 30px rgba(0,0,0,.06);
-  position:relative;
+  box-shadow:0 14px 40px rgba(0,0,0,.06);
 }
-.card video{
+.card video,.card img{
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
   margin-bottom:16px;
 }
 .card h3{margin-bottom:6px}
 .card small{color:var(--muted)}
 
-/* BUTTONS — STREET GARAGE / BMW FEEL */
+/* BUTTON — STREET GARAGE */
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
   margin-top:18px;
-  padding:14px 22px;
+  padding:14px 24px;
   border-radius:999px;
   border:1px solid var(--ink);
   background:transparent;
-  color:var(--ink);
   font-weight:600;
   cursor:pointer;
-  transition:.25s;
 }
 .btn:hover{
-  background:var(--glass);
   border-color:var(--green);
+  background:var(--ambient);
 }
 
-/* FAINT */
-.faint{
-  opacity:.35;
-  pointer-events:none;
-}
-
-/* MODAL */
-.modal{
+/* LAYER */
+.layer{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.4);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-}
-.modal.active{display:flex}
-.modal-box{
   background:#fff;
-  border-radius:22px;
-  padding:34px;
-  max-width:760px;
-  width:92%;
-  max-height:85vh;
-  overflow:auto;
+  z-index:999;
+  display:none;
+  flex-direction:column;
 }
-.modal-box h3{margin-bottom:10px}
-.modal-box p{margin-bottom:14px}
-.close{
-  position:sticky;
-  top:0;
-  margin-left:auto;
-  display:block;
+.layer.active{display:flex}
+.layer-header{
+  padding:26px 32px;
+  border-bottom:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.layer-header span{
   font-weight:600;
   cursor:pointer;
 }
+.layer-content{
+  padding:40px 32px;
+  overflow-y:auto;
+}
+.layer-content h3{margin-bottom:10px}
+.layer-content p{max-width:760px;color:var(--muted)}
 
 /* FOOTERS */
-.footer, .shopystreet{
-  padding:40px;
-  font-size:.9rem;
+.footer{
+  padding:44px;
+  border-top:1px solid #ddd;
 }
-.footer{border-top:1px solid #ddd}
 .shopystreet{
   background:#000;
   color:#fff;
+  padding:44px;
+  font-size:.9rem;
 }
 
-/* RESPONSIVE */
-@media(max-width:600px){
-  .hero{height:70vh;padding:26px}
+@media(max-width:640px){
+  .hero{padding:28px}
+  .section{padding:60px 26px}
 }
 </style>
 </head>
@@ -154,111 +144,146 @@ body{
   <h1>The Hidden Cam</h1>
 </section>
 
-<!-- SERVICES -->
+<!-- PHOTOGRAPHY -->
 <section class="section">
-  <h2>Visual Services</h2>
-  <p>We document moments, build stories, and shape visuals with intention.</p>
+  <h2>Photography</h2>
+  <p>Moments captured with intention, culture, and emotion.</p>
 
-  <div class="cards">
-
-    <!-- PHOTOGRAPHY -->
+  <div class="rail">
     <div class="card">
-      <video muted autoplay loop playsinline src="photo-placeholder.mp4"></video>
-      <h3>Photography</h3>
-      <small>Weddings • Roora • Birthdays • Editorial</small>
-      <button class="btn" onclick="openModal('photo')">SEE HOW WE CAPTURE MOMENTS</button>
+      <video muted autoplay loop playsinline src="photo1.mp4"></video>
+      <h3>Weddings</h3>
+      <small>Timeless, emotional, documentary style</small>
+      <button class="btn" onclick="openLayer('photo')">DISCOVER OUR APPROACH</button>
     </div>
 
-    <!-- VIDEOGRAPHY -->
     <div class="card">
-      <video muted autoplay loop playsinline src="video-placeholder.mp4"></video>
-      <h3>Videography</h3>
-      <small>Events • Artist Videos • Brands</small>
-      <button class="btn" onclick="openModal('video')">EXPERIENCE THE STORY</button>
+      <video muted autoplay loop playsinline src="photo2.mp4"></video>
+      <h3>Roora & Culture</h3>
+      <small>Respectful cultural storytelling</small>
+      <button class="btn" onclick="openLayer('photo')">SEE HOW WE DOCUMENT</button>
     </div>
 
-    <!-- FILM -->
     <div class="card">
-      <video muted autoplay loop playsinline src="film-placeholder.mp4"></video>
-      <h3>Film Making</h3>
-      <small>Direction • Script • Training</small>
-      <button class="btn" onclick="openModal('film')">EXPLORE FILM PRODUCTION</button>
+      <video muted autoplay loop playsinline src="photo3.mp4"></video>
+      <h3>Editorial Portraits</h3>
+      <small>Identity-focused visual language</small>
+      <button class="btn" onclick="openLayer('photo')">ENTER THE STYLE</button>
     </div>
-
-    <!-- GRAPHIC -->
-    <div class="card">
-      <h3>Graphic Design</h3>
-      <small>Posters • Covers • Visual Identity</small>
-      <button class="btn" onclick="openModal('design')">SEE OUR DESIGN LANGUAGE</button>
-    </div>
-
-    <!-- ARTIST MGMT -->
-    <div class="card">
-      <h3>Artist Management</h3>
-      <small>Strategy • Visual Direction • Growth</small>
-      <button class="btn" onclick="openModal('artist')">HOW WE SUPPORT ARTISTS</button>
-    </div>
-
-    <!-- SOCIAL MEDIA -->
-    <div class="card">
-      <h3>Social Media Management</h3>
-      <small>Content • Posting • Presence</small>
-      <button class="btn" onclick="openModal('social')">BUILD YOUR ONLINE PRESENCE</button>
-    </div>
-
-    <!-- EBOOK -->
-    <div class="card">
-      <h3>Media Notes</h3>
-      <small>Living guide • Updated weekly</small>
-      <button class="btn" onclick="openModal('ebook')">OPEN THE MEDIA NOTES</button>
-    </div>
-
   </div>
 </section>
 
-<!-- MODALS -->
-<div id="modal" class="modal" onclick="closeModal(event)">
-  <div class="modal-box" id="modalContent">
-    <span class="close" onclick="closeModal()">← Back</span>
-    <div id="modalBody"></div>
+<!-- VIDEOGRAPHY -->
+<section class="section">
+  <h2>Videography</h2>
+  <p>Movement, pacing, and emotion — designed for memory and impact.</p>
+
+  <div class="rail">
+    <div class="card">
+      <video muted autoplay loop playsinline src="video1.mp4"></video>
+      <h3>Events</h3>
+      <small>Real-time emotion capture</small>
+      <button class="btn" onclick="openLayer('video')">FEEL THE STORY</button>
+    </div>
+
+    <div class="card">
+      <video muted autoplay loop playsinline src="video2.mp4"></video>
+      <h3>Artist Videos</h3>
+      <small>Visual rhythm for music & identity</small>
+      <button class="btn" onclick="openLayer('video')">SEE VISUAL DIRECTION</button>
+    </div>
   </div>
+</section>
+
+<!-- FILM -->
+<section class="section">
+  <h2>Film Making</h2>
+  <p>From concept to final cut — structured, intentional filmmaking.</p>
+
+  <div class="rail">
+    <div class="card">
+      <video muted autoplay loop playsinline src="film1.mp4"></video>
+      <h3>Direction</h3>
+      <small>Creative leadership & vision</small>
+      <button class="btn" onclick="openLayer('film')">EXPLORE FILM WORK</button>
+    </div>
+
+    <div class="card">
+      <video muted autoplay loop playsinline src="film2.mp4"></video>
+      <h3>Script & Training</h3>
+      <small>Story structure & mentorship</small>
+      <button class="btn" onclick="openLayer('film')">UNDERSTAND THE PROCESS</button>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGEMENT -->
+<section class="section">
+  <h2>Management</h2>
+  <p>Supporting creatives beyond visuals.</p>
+
+  <div class="rail">
+    <div class="card">
+      <h3>Artist Management</h3>
+      <small>Growth, positioning, visual identity</small>
+      <button class="btn" onclick="openLayer('artist')">HOW WE SUPPORT</button>
+    </div>
+
+    <div class="card">
+      <h3>Social Media Management</h3>
+      <small>Consistency, content, presence</small>
+      <button class="btn" onclick="openLayer('social')">BUILD YOUR PRESENCE</button>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA EBOOK -->
+<section class="section">
+  <h2>Media E-Book</h2>
+  <p>A living guide to cameras, production, and visual craft.</p>
+
+  <div class="rail">
+    <div class="card">
+      <h3>Weekly Media Guide</h3>
+      <small>Educational • Future monetisation</small>
+      <button class="btn" onclick="openLayer('ebook')">OPEN MEDIA E-BOOK</button>
+    </div>
+  </div>
+</section>
+
+<!-- LAYERS -->
+<div id="layer" class="layer">
+  <div class="layer-header">
+    <span onclick="closeLayer()">← Back</span>
+  </div>
+  <div class="layer-content" id="layerContent"></div>
 </div>
 
 <!-- FOOTERS -->
-<div class="footer">
-  © The Hidden Cam — Visual Storytelling
-</div>
-
-<div class="shopystreet">
-  Powered by Shopystreet • Street Garage System
-</div>
+<div class="footer">© The Hidden Cam</div>
+<div class="shopystreet">Powered by Shopystreet • Street Garage System</div>
 
 <script>
-const content={
-  photo:`<h3>Photography</h3><p>We capture moments the way they felt — intentional, honest, and timeless.</p><button class="btn">START A SHOOT</button>`,
-  video:`<h3>Videography</h3><p>Emotion in motion. Rhythm, pacing, and story — one video at a time.</p><button class="btn">PLAN A VIDEO</button>`,
-  film:`<h3>Film Making</h3><p>From idea to final cut. Direction, scripts, shooting, editing, and training.</p><button class="btn">DISCUSS A FILM PROJECT</button>`,
-  design:`<h3>Graphic Design</h3><p>Clean visuals that support your story.</p><button class="btn">REQUEST A DESIGN</button>`,
-  artist:`<h3>Artist Management</h3><p>We structure, guide, and visually position artists for growth.</p><button class="btn">WORK WITH US</button>`,
-  social:`<h3>Social Media Management</h3><p>Consistency, visuals, and storytelling — handled professionally.</p><button class="btn">MANAGE MY PAGES</button>`,
-  ebook:`<h3>Media Notes</h3><p>Cameras, lenses, lighting, audio, and production basics. Educational only.</p>`
+const layers={
+  photo:`<h3>Photography</h3><p>We capture moments as they unfold — no forcing, no noise. Just real emotion preserved.</p><button class="btn">BOOK A SESSION</button>`,
+  video:`<h3>Videography</h3><p>Every frame is paced, intentional, and emotionally guided.</p><button class="btn">PLAN A VIDEO</button>`,
+  film:`<h3>Film Making</h3><p>Direction, scripting, shooting, editing, and training — end to end.</p><button class="btn">START A FILM</button>`,
+  artist:`<h3>Artist Management</h3><p>We help artists grow visually, strategically, and structurally.</p><button class="btn">WORK WITH US</button>`,
+  social:`<h3>Social Media Management</h3><p>We manage presence so you focus on creation.</p><button class="btn">MANAGE MY PAGES</button>`,
+  ebook:`<h3>Media E-Book</h3><p>Cameras, lenses, lighting, audio, and production fundamentals.</p>`
 };
 
-function openModal(key){
-  history.pushState({modal:true},"");
-  document.getElementById("modalBody").innerHTML=content[key];
-  document.getElementById("modal").classList.add("active");
+function openLayer(key){
+  history.pushState({layer:true},"");
+  document.getElementById("layerContent").innerHTML=layers[key];
+  document.getElementById("layer").classList.add("active");
 }
-
-function closeModal(e){
-  if(!e || e.target.classList.contains("modal")){
-    document.getElementById("modal").classList.remove("active");
-    history.back();
-  }
+function closeLayer(){
+  document.getElementById("layer").classList.remove("active");
+  history.back();
 }
-
 window.onpopstate=()=>{
-  document.getElementById("modal").classList.remove("active");
+  document.getElementById("layer").classList.remove("active");
 };
 </script>
 

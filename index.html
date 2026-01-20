@@ -1,236 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>THE HIDDEN CAM</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#0e0e10;
-  --panel:#141418;
-  --border:#26262c;
-  --fg:#f2f2f2;
-  --muted:#9a9aa2;
+  --bg:#0b0b0e;
+  --panel:#121218;
+  --line:#222230;
+  --fg:#f2f2f4;
+  --muted:#9aa0ad;
   --accent:#cfa36a;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-
+html,body{height:100%}
 body{
+  font-family:"Inter Tight",system-ui;
   background:var(--bg);
   color:var(--fg);
-  font-family:"Inter Tight",system-ui;
-  text-align:center;
+  overflow-x:hidden;
 }
 
-/* MASTER CARD */
-.master{
-  max-width:520px;
-  margin:40px auto 80px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:28px;
-  overflow:hidden;
+/* ===== GLOBAL ===== */
+.state{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.wrap{max-width:980px;width:100%;padding:60px 20px}
+h1{letter-spacing:1.8px}
+.small{font-size:.75rem;letter-spacing:1.4px;color:var(--muted)}
+.btn{
+  display:inline-block;padding:16px 26px;border-radius:14px;
+  border:1px solid var(--line);color:var(--fg);text-decoration:none;
+  font-weight:600;letter-spacing:1.2px;background:#171724;
+}
+.btn.alt{border-color:var(--accent);color:var(--accent);background:transparent}
+.sp{height:28px}
+
+/* ===== ENTRY STATE ===== */
+#entry{position:relative}
+#entry video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.65
+}
+.entry-ui{
+  position:relative;text-align:center
+}
+.entry-ui h1{font-size:2.2rem}
+.enter{margin-top:28px}
+
+/* ===== IMMERSION ===== */
+.immersion{
+  display:grid;gap:22px
+}
+.immersion video{
+  width:100%;border-radius:22px;border:1px solid var(--line)
 }
 
-/* RHYTHM */
-section,header,footer{padding:80px 24px}
-
-/* IDENTITY */
-h1{
-  font-size:1.7rem;
-  letter-spacing:1.8px;
-  margin-bottom:8px;
+/* ===== MODES ===== */
+.modes{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px
 }
-.sub{
-  font-size:.8rem;
-  letter-spacing:1.4px;
-  color:var(--muted);
-}
-
-/* ATTENTION */
-.attention video{
-  width:100%;
-  border-radius:22px;
-}
-
-/* MODES */
 .mode{
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-  margin-bottom:20px;
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:22px;padding:22px
 }
-.mode h3{
-  font-size:1rem;
-  letter-spacing:1.4px;
-  margin-bottom:6px;
-}
-.mode p{
-  font-size:.8rem;
-  color:var(--muted);
-  margin-bottom:14px;
-}
-.mode button{
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  background:#1e1e25;
-  border:1px solid var(--border);
-  color:var(--fg);
-  font-weight:600;
-  letter-spacing:1.2px;
-}
+.mode h3{letter-spacing:1.4px}
+.mode p{color:var(--muted);font-size:.8rem;margin:10px 0 14px}
 
-/* DROPS */
-.rail{
-  display:flex;
-  gap:14px;
-  overflow-x:auto;
-}
-.rail img{
-  width:220px;
-  border-radius:16px;
-  flex-shrink:0;
-}
+/* ===== DROPS ===== */
+.rail{display:flex;gap:16px;overflow-x:auto;padding-bottom:6px}
+.rail img{width:260px;border-radius:18px;border:1px solid var(--line)}
 
-/* CODIE GANG */
+/* ===== CODIE GANG ===== */
 .gang{
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:26px;
+  background:linear-gradient(180deg,#121218,#0d0d12);
+  border:1px solid var(--line);border-radius:26px;padding:28px;text-align:center
 }
-.gang h2{
-  font-size:1.2rem;
-  letter-spacing:1.6px;
-  margin-bottom:6px;
+.gang h2{letter-spacing:1.6px}
+.gang p{color:var(--muted);font-size:.8rem;margin:8px 0 20px}
+.gang .btn{width:100%;margin:8px 0}
+
+/* ===== DOCK ===== */
+.dock{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;background:rgba(18,18,24,.85);
+  border:1px solid var(--line);border-radius:18px;padding:10px 12px;
+  backdrop-filter:blur(8px)
 }
-.gang p{
-  font-size:.8rem;
-  color:var(--muted);
-  margin-bottom:22px;
-}
-.gang button{
-  width:100%;
-  padding:16px;
-  border-radius:16px;
-  margin-bottom:12px;
-  background:#1e1e25;
-  border:1px solid var(--border);
-  color:var(--fg);
-  font-weight:600;
-  letter-spacing:1.4px;
+.dock button{
+  background:#1a1a26;border:1px solid var(--line);color:var(--fg);
+  padding:10px 14px;border-radius:12px;font-weight:600
 }
 
-/* AUDIO */
-.audio{
-  margin-top:24px;
-}
-.audio button{
-  width:60px;height:60px;
-  border-radius:50%;
-  border:1px solid var(--accent);
-  background:none;
-  color:var(--accent);
-  font-size:1.2rem;
-}
+/* ===== FOOTER ===== */
+footer{padding:60px 20px;text-align:center;color:var(--muted);font-size:.7rem}
 
-/* ACTIONS */
-.actions a{
-  display:block;
-  padding:16px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  color:var(--fg);
-  text-decoration:none;
-  font-weight:600;
-  letter-spacing:1.4px;
-  margin-bottom:14px;
-}
-
-/* FOOTER */
-footer{
-  font-size:.65rem;
-  color:var(--muted);
-}
+/* ===== TRANSITIONS ===== */
+.fade-in{animation:fade .9s ease forwards}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
 </head>
 
 <body>
 
-<div class="master">
-
-<header>
-  <h1>THE HIDDEN CAM</h1>
-  <div class="sub">Media • Film • Visual Stories</div>
-</header>
-
-<section class="attention">
-  <video src="attention.mp4" autoplay muted loop playsinline></video>
-</section>
-
-<section>
-  <div class="mode">
-    <h3>VIDEO PRODUCTION</h3>
-    <p>Cinematic storytelling, brand films & visual narratives.</p>
-    <button onclick="wa('Video production request')">REQUEST THIS MODE</button>
-  </div>
-
-  <div class="mode">
-    <h3>PHOTOGRAPHY</h3>
-    <p>Portraits, events & editorial photography.</p>
-    <button onclick="wa('Photography request')">REQUEST THIS MODE</button>
-  </div>
-
-  <div class="mode">
-    <h3>EVENT COVERAGE</h3>
-    <p>Live moments, festivals & private events.</p>
-    <button onclick="wa('Event coverage request')">REQUEST THIS MODE</button>
-  </div>
-
-  <div class="mode">
-    <h3>BRAND CONTENT</h3>
-    <p>Content built for visibility, not noise.</p>
-    <button onclick="wa('Brand content request')">REQUEST THIS MODE</button>
+<!-- ENTRY STATE -->
+<section id="entry" class="state">
+  <video src="entry.mp4" autoplay muted loop playsinline></video>
+  <div class="entry-ui fade-in">
+    <h1>THE HIDDEN CAM</h1>
+    <div class="small">Stories you didn’t see being filmed</div>
+    <div class="sp"></div>
+    <a href="#immersion" class="btn alt enter">ENTER</a>
   </div>
 </section>
 
-<section>
-  <div class="rail">
-    <img src="drop1.jpg">
-    <img src="drop2.jpg">
-    <img src="drop3.jpg">
-    <img src="drop4.jpg">
+<!-- IMMERSION STATE -->
+<section id="immersion" class="state">
+  <div class="wrap immersion fade-in">
+    <video src="immersion1.mp4" autoplay muted loop playsinline></video>
+    <video src="immersion2.mp4" autoplay muted loop playsinline></video>
   </div>
 </section>
 
-<section class="gang">
-  <h2>THE CODIE GANG</h2>
-  <p>A collective of shooters, editors, coders & visual storytellers.</p>
-
-  <button onclick="wa('Join the Codie Gang')">JOIN THE CODIE GANG</button>
-  <button onclick="wa('View Codie Gang culture')">VIEW THE CULTURE</button>
-  <button disabled style="opacity:.4">GANG DROPS (LOCKED)</button>
-
-  <div class="audio">
-    <button onclick="toggleAudio()">▶</button>
-    <audio id="studio" src="studio.mp3"></audio>
+<!-- EXPLORATION / MODES -->
+<section class="state">
+  <div class="wrap fade-in">
+    <div class="modes">
+      <div class="mode">
+        <h3>VIDEO</h3>
+        <p>Cinematic storytelling and brand films.</p>
+        <button class="btn" onclick="wa('Video mode')">ACTIVATE MODE</button>
+      </div>
+      <div class="mode">
+        <h3>PHOTO</h3>
+        <p>Editorial portraits and event photography.</p>
+        <button class="btn" onclick="wa('Photo mode')">ACTIVATE MODE</button>
+      </div>
+      <div class="mode">
+        <h3>EVENTS</h3>
+        <p>Live coverage and private moments.</p>
+        <button class="btn" onclick="wa('Event mode')">ACTIVATE MODE</button>
+      </div>
+      <div class="mode">
+        <h3>BRAND</h3>
+        <p>Content built for clarity, not noise.</p>
+        <button class="btn" onclick="wa('Brand mode')">ACTIVATE MODE</button>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="actions">
-  <a href="tel:0770000000">CALL STUDIO</a>
-  <a href="#" onclick="wa('Book a shoot')">BOOK A SHOOT</a>
-  <a href="#" onclick="wa('Send a brief')">SEND A BRIEF</a>
+<!-- PROOF / DROPS -->
+<section class="state">
+  <div class="wrap fade-in">
+    <div class="rail">
+      <img src="drop1.jpg" alt="">
+      <img src="drop2.jpg" alt="">
+      <img src="drop3.jpg" alt="">
+    </div>
+  </div>
 </section>
 
-<footer>
-  Built with Street Garage Logic
-</footer>
+<!-- CODIE GANG -->
+<section class="state">
+  <div class="wrap fade-in">
+    <div class="gang">
+      <h2>THE CODIE GANG</h2>
+      <p>A collective of shooters, editors, coders & visual storytellers.</p>
+      <button class="btn alt" onclick="wa('Join Codie Gang')">JOIN THE GANG</button>
+      <button class="btn" onclick="wa('View Codie Gang culture')">VIEW THE CULTURE</button>
+      <button class="btn" disabled style="opacity:.4">GANG DROPS (LOCKED)</button>
+      <div class="sp"></div>
+      <audio id="studio" src="studio.mp3"></audio>
+      <button class="btn" onclick="toggleAudio()">STUDIO FEED</button>
+    </div>
+  </div>
+</section>
 
+<footer>Built with Street Garage Logic</footer>
+
+<!-- DOCK -->
+<div class="dock">
+  <button onclick="wa('Book a shoot')">BOOK</button>
+  <button onclick="wa('Send a brief')">BRIEF</button>
+  <button onclick="toggleAudio()">AUDIO</button>
 </div>
 
 <script>
@@ -238,7 +193,7 @@ function wa(text){
   location.href="https://wa.me/263770000000?text="+encodeURIComponent(text);
 }
 function toggleAudio(){
-  const a=document.getElementById("studio");
+  const a=document.getElementById('studio');
   a.paused?a.play():a.pause();
 }
 </script>

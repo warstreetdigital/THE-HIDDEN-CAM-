@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE HIDDEN CAM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0e0e10;
+  --panel:#141418;
+  --border:#26262c;
+  --fg:#f2f2f2;
+  --muted:#9a9aa2;
+  --accent:#cfa36a;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"Inter Tight",system-ui;
+  text-align:center;
+}
+
+/* MASTER CARD */
+.master{
+  max-width:520px;
+  margin:40px auto 80px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:28px;
+  overflow:hidden;
+}
+
+/* RHYTHM */
+section,header,footer{padding:80px 24px}
+
+/* IDENTITY */
+h1{
+  font-size:1.7rem;
+  letter-spacing:1.8px;
+  margin-bottom:8px;
+}
+.sub{
+  font-size:.8rem;
+  letter-spacing:1.4px;
+  color:var(--muted);
+}
+
+/* ATTENTION */
+.attention video{
+  width:100%;
+  border-radius:22px;
+}
+
+/* MODES */
+.mode{
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:20px;
+}
+.mode h3{
+  font-size:1rem;
+  letter-spacing:1.4px;
+  margin-bottom:6px;
+}
+.mode p{
+  font-size:.8rem;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+.mode button{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  background:#1e1e25;
+  border:1px solid var(--border);
+  color:var(--fg);
+  font-weight:600;
+  letter-spacing:1.2px;
+}
+
+/* DROPS */
+.rail{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+}
+.rail img{
+  width:220px;
+  border-radius:16px;
+  flex-shrink:0;
+}
+
+/* CODIE GANG */
+.gang{
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:26px;
+}
+.gang h2{
+  font-size:1.2rem;
+  letter-spacing:1.6px;
+  margin-bottom:6px;
+}
+.gang p{
+  font-size:.8rem;
+  color:var(--muted);
+  margin-bottom:22px;
+}
+.gang button{
+  width:100%;
+  padding:16px;
+  border-radius:16px;
+  margin-bottom:12px;
+  background:#1e1e25;
+  border:1px solid var(--border);
+  color:var(--fg);
+  font-weight:600;
+  letter-spacing:1.4px;
+}
+
+/* AUDIO */
+.audio{
+  margin-top:24px;
+}
+.audio button{
+  width:60px;height:60px;
+  border-radius:50%;
+  border:1px solid var(--accent);
+  background:none;
+  color:var(--accent);
+  font-size:1.2rem;
+}
+
+/* ACTIONS */
+.actions a{
+  display:block;
+  padding:16px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  color:var(--fg);
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:1.4px;
+  margin-bottom:14px;
+}
+
+/* FOOTER */
+footer{
+  font-size:.65rem;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<div class="master">
+
+<header>
+  <h1>THE HIDDEN CAM</h1>
+  <div class="sub">Media • Film • Visual Stories</div>
+</header>
+
+<section class="attention">
+  <video src="attention.mp4" autoplay muted loop playsinline></video>
+</section>
+
+<section>
+  <div class="mode">
+    <h3>VIDEO PRODUCTION</h3>
+    <p>Cinematic storytelling, brand films & visual narratives.</p>
+    <button onclick="wa('Video production request')">REQUEST THIS MODE</button>
+  </div>
+
+  <div class="mode">
+    <h3>PHOTOGRAPHY</h3>
+    <p>Portraits, events & editorial photography.</p>
+    <button onclick="wa('Photography request')">REQUEST THIS MODE</button>
+  </div>
+
+  <div class="mode">
+    <h3>EVENT COVERAGE</h3>
+    <p>Live moments, festivals & private events.</p>
+    <button onclick="wa('Event coverage request')">REQUEST THIS MODE</button>
+  </div>
+
+  <div class="mode">
+    <h3>BRAND CONTENT</h3>
+    <p>Content built for visibility, not noise.</p>
+    <button onclick="wa('Brand content request')">REQUEST THIS MODE</button>
+  </div>
+</section>
+
+<section>
+  <div class="rail">
+    <img src="drop1.jpg">
+    <img src="drop2.jpg">
+    <img src="drop3.jpg">
+    <img src="drop4.jpg">
+  </div>
+</section>
+
+<section class="gang">
+  <h2>THE CODIE GANG</h2>
+  <p>A collective of shooters, editors, coders & visual storytellers.</p>
+
+  <button onclick="wa('Join the Codie Gang')">JOIN THE CODIE GANG</button>
+  <button onclick="wa('View Codie Gang culture')">VIEW THE CULTURE</button>
+  <button disabled style="opacity:.4">GANG DROPS (LOCKED)</button>
+
+  <div class="audio">
+    <button onclick="toggleAudio()">▶</button>
+    <audio id="studio" src="studio.mp3"></audio>
+  </div>
+</section>
+
+<section class="actions">
+  <a href="tel:0770000000">CALL STUDIO</a>
+  <a href="#" onclick="wa('Book a shoot')">BOOK A SHOOT</a>
+  <a href="#" onclick="wa('Send a brief')">SEND A BRIEF</a>
+</section>
+
+<footer>
+  Built with Street Garage Logic
+</footer>
+
+</div>
+
+<script>
+function wa(text){
+  location.href="https://wa.me/263770000000?text="+encodeURIComponent(text);
+}
+function toggleAudio(){
+  const a=document.getElementById("studio");
+  a.paused?a.play():a.pause();
+}
+</script>
+
+</body>
+</html>

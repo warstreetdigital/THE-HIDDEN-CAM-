@@ -1,202 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>THE HIDDEN CAM</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hidden Cam</title>
 
 <style>
 :root{
-  --bg:#0b0b0e;
-  --panel:#121218;
-  --line:#222230;
-  --fg:#f2f2f4;
-  --muted:#9aa0ad;
-  --accent:#cfa36a;
+  --green:#1f7a3f;
+  --green-soft:rgba(31,122,63,.08);
+  --white:#ffffff;
+  --dark:#0c0f0d;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Helvetica,Arial,sans-serif;}
+
 body{
-  font-family:"Inter Tight",system-ui;
-  background:var(--bg);
-  color:var(--fg);
-  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 70% 20%, var(--green-soft), transparent 60%),
+    radial-gradient(circle at 20% 80%, var(--green-soft), transparent 55%),
+    var(--white);
+  color:var(--dark);
 }
 
-/* ===== GLOBAL ===== */
-.state{min-height:100vh;display:flex;align-items:center;justify-content:center}
-.wrap{max-width:980px;width:100%;padding:60px 20px}
-h1{letter-spacing:1.8px}
-.small{font-size:.75rem;letter-spacing:1.4px;color:var(--muted)}
+/* HERO */
+.hero{
+  height:92vh;
+  display:flex;
+  align-items:flex-end;
+  padding:60px;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.1), rgba(0,0,0,.45)),
+    url("placeholder-cover.jpg") center/cover no-repeat;
+}
+
+.hero h1{
+  font-size:3.2rem;
+  letter-spacing:.5px;
+  color:white;
+}
+.hero p{
+  max-width:640px;
+  margin-top:10px;
+  color:rgba(255,255,255,.9);
+}
+
+/* SECTION */
+section{padding:90px 6%;}
+.section-title{
+  font-size:2.3rem;
+  margin-bottom:50px;
+  color:var(--green);
+}
+
+/* CARD GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:34px;
+}
+
+.card{
+  background:rgba(255,255,255,.88);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.08);
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.card-body{padding:26px;}
+
+.card h3{
+  color:var(--green);
+  margin-bottom:10px;
+}
+.card p{
+  font-size:.95rem;
+  opacity:.85;
+}
+
+/* BMW / FERRARI BUTTON */
+.action-row{
+  display:flex;
+  gap:14px;
+  margin-top:18px;
+}
+
 .btn{
-  display:inline-block;padding:16px 26px;border-radius:14px;
-  border:1px solid var(--line);color:var(--fg);text-decoration:none;
-  font-weight:600;letter-spacing:1.2px;background:#171724;
-}
-.btn.alt{border-color:var(--accent);color:var(--accent);background:transparent}
-.sp{height:28px}
-
-/* ===== ENTRY STATE ===== */
-#entry{position:relative}
-#entry video{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.65
-}
-.entry-ui{
-  position:relative;text-align:center
-}
-.entry-ui h1{font-size:2.2rem}
-.enter{margin-top:28px}
-
-/* ===== IMMERSION ===== */
-.immersion{
-  display:grid;gap:22px
-}
-.immersion video{
-  width:100%;border-radius:22px;border:1px solid var(--line)
+  flex:1;
+  padding:14px 18px;
+  border-radius:40px;
+  border:1px solid rgba(0,0,0,.15);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.95), rgba(245,245,245,.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    0 6px 16px rgba(0,0,0,.12);
+  font-size:.85rem;
+  letter-spacing:.3px;
+  cursor:pointer;
 }
 
-/* ===== MODES ===== */
-.modes{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px
-}
-.mode{
-  background:var(--panel);border:1px solid var(--line);
-  border-radius:22px;padding:22px
-}
-.mode h3{letter-spacing:1.4px}
-.mode p{color:var(--muted);font-size:.8rem;margin:10px 0 14px}
-
-/* ===== DROPS ===== */
-.rail{display:flex;gap:16px;overflow-x:auto;padding-bottom:6px}
-.rail img{width:260px;border-radius:18px;border:1px solid var(--line)}
-
-/* ===== CODIE GANG ===== */
-.gang{
-  background:linear-gradient(180deg,#121218,#0d0d12);
-  border:1px solid var(--line);border-radius:26px;padding:28px;text-align:center
-}
-.gang h2{letter-spacing:1.6px}
-.gang p{color:var(--muted);font-size:.8rem;margin:8px 0 20px}
-.gang .btn{width:100%;margin:8px 0}
-
-/* ===== DOCK ===== */
-.dock{
-  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
-  display:flex;gap:10px;background:rgba(18,18,24,.85);
-  border:1px solid var(--line);border-radius:18px;padding:10px 12px;
-  backdrop-filter:blur(8px)
-}
-.dock button{
-  background:#1a1a26;border:1px solid var(--line);color:var(--fg);
-  padding:10px 14px;border-radius:12px;font-weight:600
+/* FILM */
+.film{
+  background:
+    linear-gradient(180deg, rgba(31,122,63,.08), transparent);
 }
 
-/* ===== FOOTER ===== */
-footer{padding:60px 20px;text-align:center;color:var(--muted);font-size:.7rem}
+.film-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
 
-/* ===== TRANSITIONS ===== */
-.fade-in{animation:fade .9s ease forwards}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.film-card{
+  padding:28px;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 14px 40px rgba(0,0,0,.1);
+}
+
+/* EBOOK BUTTON */
+.ebook-btn{
+  max-width:420px;
+  padding:22px;
+  border-radius:60px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.95), rgba(240,240,240,.9));
+  box-shadow:0 16px 44px rgba(0,0,0,.15);
+  font-size:1rem;
+  border:1px solid rgba(0,0,0,.15);
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  padding:50px;
+  text-align:center;
+  background:#0f2f1e;
+  color:white;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ENTRY STATE -->
-<section id="entry" class="state">
-  <video src="entry.mp4" autoplay muted loop playsinline></video>
-  <div class="entry-ui fade-in">
-    <h1>THE HIDDEN CAM</h1>
-    <div class="small">Stories you didn’t see being filmed</div>
-    <div class="sp"></div>
-    <a href="#immersion" class="btn alt enter">ENTER</a>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>The Hidden Cam</h1>
+    <p>Film. Photography. Design. Culture.  
+    We don’t capture moments — we engineer memory.</p>
   </div>
-</section>
-
-<!-- IMMERSION STATE -->
-<section id="immersion" class="state">
-  <div class="wrap immersion fade-in">
-    <video src="immersion1.mp4" autoplay muted loop playsinline></video>
-    <video src="immersion2.mp4" autoplay muted loop playsinline></video>
-  </div>
-</section>
-
-<!-- EXPLORATION / MODES -->
-<section class="state">
-  <div class="wrap fade-in">
-    <div class="modes">
-      <div class="mode">
-        <h3>VIDEO</h3>
-        <p>Cinematic storytelling and brand films.</p>
-        <button class="btn" onclick="wa('Video mode')">ACTIVATE MODE</button>
-      </div>
-      <div class="mode">
-        <h3>PHOTO</h3>
-        <p>Editorial portraits and event photography.</p>
-        <button class="btn" onclick="wa('Photo mode')">ACTIVATE MODE</button>
-      </div>
-      <div class="mode">
-        <h3>EVENTS</h3>
-        <p>Live coverage and private moments.</p>
-        <button class="btn" onclick="wa('Event mode')">ACTIVATE MODE</button>
-      </div>
-      <div class="mode">
-        <h3>BRAND</h3>
-        <p>Content built for clarity, not noise.</p>
-        <button class="btn" onclick="wa('Brand mode')">ACTIVATE MODE</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROOF / DROPS -->
-<section class="state">
-  <div class="wrap fade-in">
-    <div class="rail">
-      <img src="drop1.jpg" alt="">
-      <img src="drop2.jpg" alt="">
-      <img src="drop3.jpg" alt="">
-    </div>
-  </div>
-</section>
-
-<!-- CODIE GANG -->
-<section class="state">
-  <div class="wrap fade-in">
-    <div class="gang">
-      <h2>THE CODIE GANG</h2>
-      <p>A collective of shooters, editors, coders & visual storytellers.</p>
-      <button class="btn alt" onclick="wa('Join Codie Gang')">JOIN THE GANG</button>
-      <button class="btn" onclick="wa('View Codie Gang culture')">VIEW THE CULTURE</button>
-      <button class="btn" disabled style="opacity:.4">GANG DROPS (LOCKED)</button>
-      <div class="sp"></div>
-      <audio id="studio" src="studio.mp3"></audio>
-      <button class="btn" onclick="toggleAudio()">STUDIO FEED</button>
-    </div>
-  </div>
-</section>
-
-<footer>Built with Street Garage Logic</footer>
-
-<!-- DOCK -->
-<div class="dock">
-  <button onclick="wa('Book a shoot')">BOOK</button>
-  <button onclick="wa('Send a brief')">BRIEF</button>
-  <button onclick="toggleAudio()">AUDIO</button>
 </div>
 
-<script>
-function wa(text){
-  location.href="https://wa.me/263770000000?text="+encodeURIComponent(text);
-}
-function toggleAudio(){
-  const a=document.getElementById('studio');
-  a.paused?a.play():a.pause();
-}
-</script>
+<!-- SERVICES -->
+<section>
+  <h2 class="section-title">Creative Services</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="placeholder-photo.jpg">
+      <div class="card-body">
+        <h3>Photography</h3>
+        <p>Portraits, culture, editorial, memory-driven photography.</p>
+        <div class="action-row">
+          <button class="btn">Process & Style</button>
+          <button class="btn">Use-Cases</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="placeholder-video.jpg">
+      <div class="card-body">
+        <h3>Videography</h3>
+        <p>Cinematic visuals with narrative structure.</p>
+        <div class="action-row">
+          <button class="btn">How We Shoot</button>
+          <button class="btn">Formats</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="placeholder-design.jpg">
+      <div class="card-body">
+        <h3>Graphic Design</h3>
+        <p>Posters, artwork, visual identities.</p>
+        <div class="action-row">
+          <button class="btn">Design Logic</button>
+          <button class="btn">Applications</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="placeholder-artist.jpg">
+      <div class="card-body">
+        <h3>Artist Management</h3>
+        <p>Career direction, branding, visual control.</p>
+        <div class="action-row">
+          <button class="btn">What We Manage</button>
+          <button class="btn">Growth Path</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="placeholder-social.jpg">
+      <div class="card-body">
+        <h3>Social Media Management</h3>
+        <p>Content systems, posting rhythm, identity.</p>
+        <div class="action-row">
+          <button class="btn">Content Flow</button>
+          <button class="btn">Platforms</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FILM LAYER -->
+<section class="film">
+  <h2 class="section-title">Film Making</h2>
+
+  <div class="film-grid">
+    <div class="film-card">
+      <h3>Directing</h3>
+      <div class="action-row">
+        <button class="btn">Approach</button>
+        <button class="btn">Scenes</button>
+      </div>
+    </div>
+
+    <div class="film-card">
+      <h3>Cinematography</h3>
+      <div class="action-row">
+        <button class="btn">Camera Language</button>
+        <button class="btn">Movement</button>
+      </div>
+    </div>
+
+    <div class="film-card">
+      <h3>Script Writing</h3>
+      <div class="action-row">
+        <button class="btn">Structure</button>
+        <button class="btn">Emotion</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EBOOK -->
+<section>
+  <h2 class="section-title">Production Guide</h2>
+
+  <button class="ebook-btn">
+    Open Media E-Book  
+    <br><small>Cameras • Lenses • Lighting • Audio • Editing</small>
+  </button>
+</section>
+
+<footer>
+© The Hidden Cam — International Visual Culture
+</footer>
 
 </body>
 </html>
